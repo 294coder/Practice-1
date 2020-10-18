@@ -30,6 +30,8 @@
 #include<Mystack.h>
 #include<Linkstack.h>
 #include<paixu.h>
+#include<book.h>
+#include<iomanip>
 using namespace std;
 
 void check1(void);
@@ -39,13 +41,19 @@ void check4(void);
 void check5(void);
 void check6(void);
 void check7(int n[]);
+void check8(int n[]);
+void check9(int n[]);
+void check12();
 int main() {
+
+	
+
 
 	int num;
 	int n[NUM] = { 51,38,79,22,91,105,33,52,16,112 };
 	printf_s("*************EXPERIMENT STARTS!****************\n");
 	printf_s("Input a Number From 1 to 4 to Choose a Function!\n");
-	printf_s("1.顺序表  2.单链表  3.双链表  4.循环队列  5.栈  6.链栈  7.插入排序\n");
+	printf_s("1.顺序表  2.单链表  3.双链表  4.循环队列  5.栈  6.链栈  7.插入排序  8.冒泡排序  9.选择排序  12.顺序表操作\n");
 	scanf_s("%d", &num);
 
 	switch (num) {
@@ -53,24 +61,42 @@ int main() {
 	case 1:
 		/****上机实验1 顺序表****/
 		check1();
+		break;
 	case 2:
 		/****上机实验2 单链表****/
 		check2();
+		break;
 	case 3:
 		/****上机实验3 双链表****/
 		check3();
+		break;
 	case 4:
 		/****上机实验4 循环队列****/
 		check4();
+		break;
 	case 5:
 		/****上机实验5 栈****/
 		check5();
+		break;
 	case 6:
 		/****上机实验6 链栈****/
 		check6();
 	case 7:
 		/****上机实验7 插入排序****/
 		check7(n);
+		break;
+	case 8:
+		/****上机实验8 插入排序****/
+		check8(n);
+		break;
+	case 9:
+		/****上机实验9 插入排序****/
+		check9(n);
+		break;
+	case 12:
+		check12();
+	default:
+		break;
 	}
 	cout << "*************EXPERIMENT OVER***************" << endl;
 }
@@ -212,7 +238,34 @@ void check6() {
 	cout << "*******EXPERIMENT6 OVER!*******\n" << endl;
 }
 void check7(int n[]) {
-	printf_s("*******EXPERIMENT6 STARTS!******\n");
+	printf_s("*******EXPERIMENT7 STARTS!******\n");
 	p_insert(n);
-	cout << "*******EXPERIMENT6 OVER!*******\n" << endl;
+	cout << "*******EXPERIMENT7 OVER!*******\n" << endl;
+}
+void check8(int n[]) {
+	printf_s("*******EXPERIMENT8 STARTS!******\n");
+	bubble(n);
+	cout << "*******EXPERIMENT8 OVER!*******\n" << endl;
+}
+void check9(int n[]) {
+	printf_s("*******EXPERIMENT9 STARTS!******\n");
+	xuanze(n);
+	cout << "*******EXPERIMENT9 OVER!*******\n" << endl;
+}
+void check12() {
+	printf_s("*******EXPERIMENT12 STARTS!******\n");
+	//Bookinfo* b = (Bookinfo*)malloc(sizeof(Bookinfo));
+	Bookinfo* b = new(Bookinfo);//malloc不能为string构造，必须用new
+
+	if (!b) 
+	{
+		printf("Memory out !\n");
+		return;
+	}
+	book_init(b);
+	book_create(b);
+	book_print(b);
+	book_insert(b, 4, 123, "程豪的养殖", "xhl", 1);
+	book_print(b);
+	printf_s("*******EXPERIMENT12 STARTS!******\n");
 }
