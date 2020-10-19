@@ -106,9 +106,26 @@ void book_delete(Bookinfo* b, int pos) {
 		std::cout << "Wrong Position, Can't Delete!" << std::endl;
 	}
 	else {
-		int i = b->num - 1;
-		for (;i >= pos;i--) {
-			b->data[i + 1] = b->data[i];
+		int i = pos - 1;
+		for (;i <= b->num;i++) {
+			b->data[i] = b->data[i + 1];
+		}
+		b->data[pos].author = "\0";
+		b->data[pos].bookname = "\0";
+		b->data[pos].num = 0;
+		b->data[pos].price = 0;
+	}
+}
+void book_paixu(Bookinfo* b) {
+	Book temp;
+	for (int i = 0;i < b->num - 1;i++) {
+		for (int j = i + 1;j < b->num;j++) {
+			if (b->data[i].price < b->data[j].price) {
+				temp = b->data[i];
+				b->data[i] = b->data[j];
+				b->data[j] = temp;
+			}
 		}
 	}
+	book_print(b);
 }

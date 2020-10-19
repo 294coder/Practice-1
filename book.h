@@ -31,5 +31,6 @@ void book_delete(Bookinfo*, int pos);
 void book_init(Bookinfo*);
 void book_create(Bookinfo*);
 void book_print(Bookinfo*);
+void book_paixu(Bookinfo*);
 
 #endif
