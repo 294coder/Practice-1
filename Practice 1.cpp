@@ -32,6 +32,7 @@
 #include<paixu.h>
 #include<book.h>
 #include<iomanip>
+#define NUM 10//VS2019数组大小报错
 using namespace std;
 
 void check1(void);
@@ -43,62 +44,79 @@ void check6(void);
 void check7(int n[]);
 void check8(int n[]);
 void check9(int n[]);
+void check10(int n[]);
+void check11(int n[]);
 void check12();
 int main() {
 
-	
-
-
-	int num;
 	int n[NUM] = { 51,38,79,22,91,105,33,52,16,112 };
-	printf_s("*************EXPERIMENT STARTS!****************\n");
-	printf_s("Input a Number From 1 to 4 to Choose a Function!\n");
-	printf_s("1.顺序表  2.单链表  3.双链表  4.循环队列  5.栈  6.链栈  7.插入排序  8.冒泡排序  9.选择排序  12.顺序表操作\n");
-	scanf_s("%d", &num);
+	int p;
+	printf_s("Input a Number From 1 to 12 to Choose a Function!\n");
+	printf_s("1.顺序表  2.单链表  3.双链表  4.循环队列  5.栈  6.链栈  \n7.插入排序  8.冒泡排序  9.选择排序  10.顺序查找  11.二分查找  \n12.顺序表操作\n");
+	printf_s("Input -1 to End the Experiment!\n");
+	while (1) {
+		cout << "You Choose Experiment " << flush;
+		cin >> p;
+		cout << endl;
+		if (p == -1) {
+			cout << "Experiment End!\n" << endl;
+			return 1;
+		}
+		printf_s("*************EXPERIMENT STARTS!****************\n");
+		switch (p) {
 
-	switch (num) {
-		
-	case 1:
-		/****上机实验1 顺序表****/
-		check1();
-		break;
-	case 2:
-		/****上机实验2 单链表****/
-		check2();
-		break;
-	case 3:
-		/****上机实验3 双链表****/
-		check3();
-		break;
-	case 4:
-		/****上机实验4 循环队列****/
-		check4();
-		break;
-	case 5:
-		/****上机实验5 栈****/
-		check5();
-		break;
-	case 6:
-		/****上机实验6 链栈****/
-		check6();
-	case 7:
-		/****上机实验7 插入排序****/
-		check7(n);
-		break;
-	case 8:
-		/****上机实验8 插入排序****/
-		check8(n);
-		break;
-	case 9:
-		/****上机实验9 插入排序****/
-		check9(n);
-		break;
-	case 12:
-		check12();
-	default:
-		break;
+		case 1:
+			/****上机实验1 顺序表****/
+			check1();
+			break;
+		case 2:
+			/****上机实验2 单链表****/
+			check2();
+			break;
+		case 3:
+			/****上机实验3 双链表****/
+			check3();
+			break;
+		case 4:
+			/****上机实验4 循环队列****/
+			check4();
+			break;
+		case 5:
+			/****上机实验5 栈****/
+			check5();
+			break;
+		case 6:
+			/****上机实验6 链栈****/
+			check6();
+		case 7:
+			/****上机实验7 插入排序****/
+			check7(n);
+			break;
+		case 8:
+			/****上机实验8 插入排序****/
+			check8(n);
+			break;
+		case 9:
+			/****上机实验9 插入排序****/
+			check9(n);
+			break;
+		case 10:
+			/****上机实验10 顺序查找****/
+			check10(n);
+			break;
+		case 11:
+			/****上机实验11 二分查找****/
+			check11(n);
+			break;
+		case 12:
+			/****上机实验12 顺序表操作****/
+			check12();
+			break;
+		default:
+			break;
+		}
+		cout << "*************EXPERIMENT OVER***************" << endl;
 	}
-	cout << "*************EXPERIMENT OVER***************" << endl;
 }
 
 void check1() {
@@ -252,6 +270,38 @@ void check9(int n[]) {
 	xuanze(n);
 	cout << "*******EXPERIMENT9 OVER!*******\n" << endl;
 }
+void check10(int n[]) {
+	printf_s("*******EXPERIMENT10 STARTS!******\n");
+	int* pn = xuanze(n);
+	int pos1, pos2;
+	pos1 = seq_find_first(pn, 52);
+	pos2 = seq_find_first(pn, 36);
+	if (pos1 > 0) {
+		printf_s("Element 52 is in Position %d\n", pos1);
+	}
+	else {
+		printf_s("Element 52 is Not in This Array!\n");
+	}
+	if (pos2 > 0) {
+		printf_s("Element 36 is in Position %d\n", pos2);
+	}
+	else {
+		printf_s("Element 36 is Not in This Array!\n");
+	}
+	cout << "*******EXPERIMENT10 OVER!*******\n" << endl;
+}
+void check11(int n[]) {
+	printf_s("*******EXPERIMENT11 STARTS!******\n");
+	int* pn = xuanze(n);
+	int pos1 = half_find_first(n, 22);
+	if (pos1 > 0) {
+		printf_s("Element 22 is in Position %d\n", pos1);
+	}
+	else {
+		printf_s("Element 22 is Not in This Array!\n");
+	}
+	cout << "*******EXPERIMENT11 OVER!*******\n" << endl;
+}
 void check12() {
 	printf_s("*******EXPERIMENT12 STARTS!******\n");
 	//Bookinfo* b = (Bookinfo*)malloc(sizeof(Bookinfo));
@@ -267,5 +317,8 @@ void check12() {
 	book_print(b);
 	book_insert(b, 4, 123, "程豪的养殖", "xhl", 1);
 	book_print(b);
+	book_delete(b, 4);
+	book_print(b);
+	book_paixu(b);
 	printf_s("*******EXPERIMENT12 STARTS!******\n");
 }
